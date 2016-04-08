@@ -4,13 +4,14 @@
 
 (defn build-routes[port builder]
   (add-route "GET /" (game) builder)
-  (add-route "POST /move" (game) builder))
+  (add-route "POST /move" (game) builder)
+  (add-route "GET /move" (game) builder))
 
-(defn run-server [port]
+(defn build-server [port]
   (let [builder (new-server-builder)
         server (get-server port builder)]
     (build-routes port builder)
-    (.run server)))
+    server))
 
 (defn -main [& args]
-  (run-server 9000))
+  (.run (build-server 9300)))
