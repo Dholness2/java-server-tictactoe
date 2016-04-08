@@ -1,0 +1,25 @@
+   .square0, .square1, .square2,
+   .square3, .square4, .sqaure5,
+   .sqaure6  .square7  .sqaure8{
+         width:100px;
+         height:100px;
+   }
+
+   .square1,.square4,.square7 {
+    border-left:1px solid #000;
+    border-right:1px solid #000;
+   }
+
+   .square3, .square4, .square5 {
+    border-top:1px solid #000;
+    border-bottom:1px solid #000;
+   }
+
+   input[type="radio" i] {
+    margin-left: 16;
+   }
+
+   .move {
+    padding-left: 30;
+    font-size: -webkit-xxx-large;
+   }
