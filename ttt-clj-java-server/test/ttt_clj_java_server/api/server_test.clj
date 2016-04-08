@@ -1,7 +1,7 @@
 (ns ttt-clj-java-server.api.server-test
   (:require [clojure.test :refer :all]
             [ttt-clj-java-server.responses.game-response :refer [game]]
-            [ttt-clj-java-server.api.server :refer :all])
+            [ttt-clj-java-server.api.server :refer [serveron? server-off new-server-builder get-server add-route get-routes]])
   (:import com.javawebserver.app.serverBuilders.SimpleServerBuilder)
   (:import com.javawebserver.app.Server))
 
