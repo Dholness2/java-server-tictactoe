@@ -1,15 +1,16 @@
 (ns ttt-clj-java-server.core
   (:require [ttt-clj-java-server.responses.game-response :refer [game]]
-            [ttt-clj-java-server.api.server :refer [add-route get-server]]))
+            [ttt-clj-java-server.api.server :refer [add-route get-server new-server-builder]]))
 
-(defn build-routes[port]
- (add-route "GET /" (game))
- (add-route "POST /move" (game)))
+(defn build-routes[port builder]
+  (add-route "GET /" (game) builder)
+  (add-route "POST /move" (game) builder))
 
 (defn run-server [port]
-  (build-routes port)
-  (let [server (get-server port)]
+  (let [builder (new-server-builder)
+        server (get-server port builder)]
+    (build-routes port builder)
     (.run server)))
 
 (defn -main [& args]
-  (run-server 8100))
+  (run-server 9000))
