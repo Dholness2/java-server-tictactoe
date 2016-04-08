@@ -10,7 +10,6 @@
 (defn get-move [params]
   (let[params-list (parse-params params)
        move-selection (filter #(.contains % player-move) params-list)]
-    (prn move-selection)
     (read-string (last (str/split (apply str move-selection) #"=")))))
 
 (defn get-board-positions [params]
