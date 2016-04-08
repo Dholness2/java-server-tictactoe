@@ -1,8 +1,8 @@
 (ns ttt-clj-java-server.board-builder
   (:require [clojure.string :as str]
-            [ttt-clj-java-server.helpers.params-parser :refer :all]
-            [tic-tac-toe.board :refer :all]
-            [tic-tac-toe.game :refer :all]))
+            [ttt-clj-java-server.helpers.params-parser :refer [get-board-positions]]
+            [tic-tac-toe.board :refer [moveopen? matrix-convrt move create-empty-board]]
+            [tic-tac-toe.game :refer [winner]]))
 
 (defn add-move [board move-selection marker]
   (if (moveopen? board move-selection)
@@ -27,8 +27,8 @@
 (defn create-table-data [index marker]
   (let [position (inc index)]
     (if (= marker "_")
-      (str "<td><input type=\"radio\" value=\"" position "\" name=\"openPosition\"></td>")
-      (str"<td>" marker "<input type=\"hidden\" value=\"" position "\" name="\" marker "\"></td>"))))
+      (str "<td class=\"square" index "\"><input type=\"radio\" value=\"" position "\" name=\"openPosition\"></td>")
+      (str "<td class=\"square" index "\"><a class=\"move\">" marker "</a><input type=\"hidden\" value=\"" position "\" name="\" marker "\"></td>"))))
 
 (defn build-rows [board]
   (let [board-size (count board)
@@ -39,8 +39,8 @@
 (defn winner-header [board]
   (let [winner  (winner board)]
     (if (not= winner nil)
-      (str "<h2> Winner: "winner"!</h2>")
-      (str "<h2> Select move</h2>"))))
+      (str "<h2>"winner"!</h2>")
+      (str "<h2>Select move</h2>"))))
 
 (defn form-path [board]
   (let [winner  (winner board)]
@@ -57,8 +57,12 @@
 (defn get-board-view [board]
   (let [table-data (build-rows board)]
   (str "<html>"
-          "<h1>Unbeatable Tic-Tac-Toe</h1>"
-          (winner-header board)
+       "<head>"
+         "<style>"
+            (slurp "resources/board-style.css")
+         "</style>"
+       "</head>"
+       "<h1>Unbeatable Tic-Tac-Toe</h1>"
           "<body>"
             "<form action=\"/move\" method=\"POST\">"
               "<table><tr>"
@@ -68,8 +72,10 @@
                  "</tr><tr>"
                  (str/join (get table-data 2))
                  "</tr></table>"
-                 (form-submit board)
+                 (form-submit board)"<br>"
             "</form>"
-            "<p><a href="\/">New Game</a></p>"
+            "<p>"
+              "<a href="\/">New Game</a>"
+            "</p>"
           "</body>"
         "</html>")))
