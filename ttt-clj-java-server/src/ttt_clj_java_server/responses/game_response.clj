@@ -1,10 +1,10 @@
 (ns ttt-clj-java-server.responses.game-response
-  (:require [ttt-clj-java-server.api.response-builder :refer :all]
-            [ttt-clj-java-server.board-builder :refer :all]
-            [ttt-clj-java-server.api.request :refer :all]
-            [ttt-clj-java-server.helpers.params-parser :refer :all]
-            [tic-tac-toe.ai :refer :all]
-            [tic-tac-toe.game :refer :all]
+  (:require [ttt-clj-java-server.api.response-builder :refer [new-response-builder add-status add-header add-body get-response]]
+            [ttt-clj-java-server.board-builder :refer [get-board-view current-board add-move]]
+            [ttt-clj-java-server.api.request :refer [get-body]]
+            [ttt-clj-java-server.helpers.params-parser :refer [get-move]]
+            [tic-tac-toe.ai :refer [game-move]]
+            [tic-tac-toe.game :refer [winner]]
             [clojure.string :as str])
   (:import com.javawebserver.app.responses.Response))
 
@@ -36,7 +36,8 @@
     response))
 
 (defn emptybody? [request]
-  (= nil (get-body request)))
+  (let [body (get-body request)]
+    (or (= nil body)(= body "move=Submit+Move"))))
 
 (defn empty-body-response []
   (let [body (get-board-view empty-board)
