@@ -14,4 +14,4 @@ Clone https://github.com/Dholness2/clojure-tic-tac-toe
 
 Run $ lein uberjar and add it to ttt-clj-java-server/lib
 
-[![Clojars Project](https://img.shields.io/clojars/v/ttt-clj-java-server.svg)](https://clojars.org/ttt-clj-
+[![Clojars Project](https://img.shields.io/clojars/v/ttt-clj-java-server.svg)](https://clojars.org/ttt-clj-java-server)
