@@ -35,7 +35,7 @@
     (add-body response body-bytes)
     response))
 
-(defn emptybody? [request]
+(defn empty-body? [request]
   (let [body (get-body request)]
     (or (= nil body)(= body "move=Submit+Move"))))
 
@@ -44,7 +44,7 @@
         response (build-response-message body)]
     (get-response response)))
 
-(defn partialboard? [request]
+(defn partial-board? [request]
   (let [full-request (get-body request)
         x-check (boolean (re-find #"x=" full-request))
         o-check  (boolean  (re-find #"o=" full-request))]
@@ -56,7 +56,7 @@
         response (build-response-message body)]
     (get-response response)))
 
-(defn moveselected? [request]
+(defn move-selected? [request]
   (let [body (get-body request)]
     (.contains body "openPosition")))
 
@@ -70,7 +70,7 @@
   (reify Response
     (handleRequest [this request]
       (cond
-        (emptybody? request) (empty-body-response)
-        (moveselected? request) (move-selected-response request)
-        (partialboard? request) (partial-board-response request)
+        (empty-body? request) (empty-body-response)
+        (move-selected? request) (move-selected-response request)
+        (partial-board? request) (partial-board-response request)
         ))))

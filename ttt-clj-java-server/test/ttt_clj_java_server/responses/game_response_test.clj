@@ -48,12 +48,12 @@
 (deftest empty-body-test-true-state
   (testing "checks request body for content"
     (let [request (new-request)]
-      (is (= true (emptybody? request))))))
+      (is (= true (empty-body? request))))))
 
 (deftest empty-body-test-false-state
   (testing "checks request body for content"
     (let [request (build-request "x=1&o=2&openPosition=3&move=submit")]
-      (is (= false (emptybody? request))))))
+      (is (= false (empty-body? request))))))
 
 (deftest empty-body-response-test
   (testing "returns empty board view response"
@@ -66,12 +66,12 @@
 (deftest partial-board-test-true-state
   (testing "it returns true if the board has no current moves"
     (let  [request (build-request "x=1&o=2&openPosition=3&move=submit")]
-     (is (= true (partialboard? request))))))
+     (is (= true (partial-board? request))))))
 
 (deftest partial-board-test-false-state
   (testing "it returns true if the board has no current moves"
     (let  [request (build-request "openPosition=3&move=submit")]
-     (is (= false (partialboard? request))))))
+     (is (= false (partial-board? request))))))
 
 
 (deftest partial-board-response-test
@@ -87,17 +87,17 @@
 (deftest move-selection-test-false-state
   (testing "it returns true if open position selection param is empty"
     (let [request (build-request "")]
-      (is (= false (moveselected? request))))))
+      (is (= false (move-selected? request))))))
 
 (deftest move-selected-test-true-state
   (testing "it returns true if a open position is empty"
     (let [request (build-request "x=1&o=2&openPosition=3&move=submit")]
-      (is (= true (moveselected? request))))))
+      (is (= true (move-selected? request))))))
 
 (deftest move-selected-test-true-state
   (testing "it returns true if a open position is empty"
     (let [request (build-request "x=1&o=2&openPosition=3&move=submit")]
-      (is (= true (moveselected? request))))))
+      (is (= true (move-selected? request))))))
 
 (deftest move-selected-response-test
   (testing "returns updated board view based on player's move selection"
