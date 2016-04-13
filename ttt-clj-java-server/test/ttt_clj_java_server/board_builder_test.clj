@@ -1,6 +1,7 @@
 (ns ttt-clj-java-server.board-builder-test
   (:require [clojure.test :refer :all]
             [ttt-clj-java-server.board-builder :refer :all]
+            [tic-tac-toe.game :refer :all]
             [clojure.string :as str]))
 
 (deftest add-move-test
@@ -42,21 +43,56 @@
 
 (deftest winner-header-test
   (testing "it builds winner header"
-   (let [board [[["x""x""x"]["o""_""o"]["_""_""_"]]]
-         expected-header   "<h2> Winner: "winner"!</h2>"]
+   (let [board [["x""x""x"]["o""_""o"]["_""_""_"]]
+         winner (winner board)
+         expected-header (str "<h2> Winner: " winner "!</h2>")]
+     (is (= expected-header (winner-header board))))))
+
+(deftest winner-header-test-false-state
+  (testing "it builds winner header"
+   (let [board [["x""_""x"]["o""_""o"]["_""_""_"]]
+         winner (winner board)
+         expected-header "<h2> Select move</h2>"]
      (is (= expected-header (winner-header board))))))
 
 (deftest form-submit-test
-  (testing "it removed submit button"
-   (let [board [[["x""x""x"]["o""_""o"]["_""_""_"]]]
-         expected-header   "<h2> Winner: "winner"!</h2>"]
-     (is (= expected-header (winner-header board))))))
+  (testing "it removes submit button"
+   (let [board [["x""x""x"]["o""_""o"]["_""_""_"]]
+         expected   ""]
+     (is (= expected (form-submit board))))))
+
+(deftest form-submit-test-false-state
+  (testing "it adds submit button"
+    (let [board [["x""_""x"]["o""_""o"]["_""_""_"]]
+          expected "<input type=\"submit\" value=\"Submit Move\" name=\"move\">"]
+      (is (= expected (form-submit board))))))
 
 (deftest get-board-view-test
-  (testing "builds board view based on board"
-    (let [board [[["x""o""_"]["_""_""_"]["_""_""_"]]]
-          expected ""
-          response-no-whitespace  (str/replace (get-board-view board) "\\n" "")]
-      (is (= expected response-no-whitespace)))))
-
-
+  (testing "it builds board view based on board"
+    (let [board [["_""_""_"]["_""_""_"]["_""_""_"]]
+          expected(str "<html>"
+                     "<h1>Unbeatable Tic-Tac-Toe</h1>"
+                     "<h2> Select move</h2>"
+                     "<body>"
+                      "<form action=\"/move\" method=\"POST\">"
+                        "<table>"
+                          "<tr>"
+                            "<td><input type=\"radio\" value=\"1\" name=\"openPosition\"></td>"
+                            "<td><input type=\"radio\" value=\"2\" name=\"openPosition\"></td>"
+                            " <td><input type=\"radio\" value=\"3\" name=\"openPosition\"></td>"
+                        "</tr>"
+                        "<tr>"
+                           "<td><input type=\"radio\" value=\"4\" name=\"openPosition\"></td>"
+                           "<td><input type=\"radio\" value=\"5\" name=\"openPosition\"></td>"
+                           "<td><input type=\"radio\" value=\"6\" name=\"openPosition\"></td>"
+                        "</tr>"
+                        "<tr>"
+                           "<td><input type=\"radio\" value=\"7\" name=\"openPosition\"></td>"
+                           "<td><input type=\"radio\" value=\"8\" name=\"openPosition\"></td>"
+                           "<td><input type=\"radio\" value=\"9\" name=\"openPosition\"></td>"
+                        "</tr>"
+                        "</table><input type=\"submit\" value=\"Submit Move\" name=\"move\">"
+                      "</form><p><a href=/>New Game</a></p>"
+                    "</body>"
+                   "</html>")]
+     (is (= expected (get-board-view board))))))

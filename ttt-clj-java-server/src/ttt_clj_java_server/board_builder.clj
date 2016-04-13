@@ -11,12 +11,12 @@
 
 (defn update-position [board position]
   (let[selection (str/split position #"=")
-       marker    (first selection)
+       marker (first selection)
        move-selection (read-string (last selection))]
     (add-move board move-selection marker)))
 
 (defn fill-board  [board taken-positions]
-  (reduce  update-position board taken-positions))
+  (reduce update-position board taken-positions))
 
 (defn current-board [params]
   (let [positions (get-board-positions params)
@@ -33,7 +33,7 @@
 (defn build-rows [board]
   (let [board-size (count board)
         board (vec (flatten board))
-        rows  (map-indexed create-table-data board)]
+        rows (map-indexed create-table-data board)]
      (vec (partition board-size board-size [] rows))))
 
 (defn winner-header [board]
@@ -56,24 +56,20 @@
 
 (defn get-board-view [board]
   (let [table-data (build-rows board)]
-  (str "<html>
-        <h1>Unbeatable Tic-Tac-Toe</h1>"
-         (winner-header board)
-         "<body>
-           <form action=\"/move\" method=\"POST\">
-             <table>
-               <tr>
-                 "(str/join "    \n" (get table-data 0))"
-               </tr>
-               <tr>
-                 "(str/join "    \n" (get table-data 1))"
-               </tr>
-               <tr>
-                "(str/join "    \n" (get table-data 2))"
-               </tr>
-             </table>
-           "(form-submit board)
-           "</form>
-           <p><a href="\/">New Game</a></p>"
-         "</body>
-        </html>")))
+  (str "<html>"
+          "<h1>Unbeatable Tic-Tac-Toe</h1>"
+          (winner-header board)
+          "<body>"
+            "<form action=\"/move\" method=\"POST\">"
+              "<table><tr>"
+                 (str/join (get table-data 0))
+                 "</tr><tr>"
+                 (str/join  (get table-data 1))
+                 "</tr><tr>"
+                 (str/join (get table-data 2))
+                 "</tr></table>"
+                 (form-submit board)
+            "</form>"
+            "<p><a href="\/">New Game</a></p>"
+          "</body>"
+        "</html>")))
