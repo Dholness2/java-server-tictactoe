@@ -112,23 +112,23 @@
 (deftest handle-request-test-partial-state
   (testing "it returns partial-board if no move is selected"
     (let [request (build-request "x=1&o=2&move=submit")
-          game-respone (game)
-          expected-response (byte-to-string (paratial-board-response request))
-          test-response     (byte-to-string game-response(request))]
+          game-response (game)
+          expected-response (byte-to-string (partial-board-response request))
+          test-response (byte-to-string (.handleRequest game-response request))]
       (is (= expected-response test-response)))))
 
 (deftest handle-request-test-empty-state
   (testing "it returns empty-board-response if body is empty"
-    (let [request (build-request)
-          game-respone (game)
-          expected-response (byte-to-string (empty-board-response request))
-          test-response     (byte-to-string game-response(request))]
+    (let [request (new-request)
+          game-response (game)
+          expected-response (byte-to-string (empty-body-response))
+          test-response (byte-to-string (.handleRequest game-response request))]
       (is (= expected-response test-response)))))
 
 (deftest handle-request-test-move-selected
   (testing "it returns updated board if move is selected"
-    (let [request (build-request "x=1&o=2&move=submit")
-          game-respone (game)
+    (let [request (build-request "x=1&o=2&openPosition=3&move=submit")
+          game-response (game)
           expected-response (byte-to-string (move-selected-response request))
-          test-response     (byte-to-string game-response(request))]
+          test-response     (byte-to-string (.handleRequest game-response request))]
       (is (= expected-response test-response)))))
