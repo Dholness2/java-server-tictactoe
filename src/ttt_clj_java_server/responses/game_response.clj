@@ -8,6 +8,8 @@
             [clojure.string :as str])
   (:import com.javawebserver.app.responses.Response))
 
+(def ok-response-code "200")
+(def content-header "Content-length : ")
 (def ai-marker "o")
 (def player-marker "x")
 (def empty-board [["_" "_" "_"] ["_" "_" "_"] ["_" "_" "_"]])
@@ -30,8 +32,8 @@
 (defn build-response-message [body]
   (let [body-bytes (.getBytes body)
         response (new-response-builder)]
-    (add-status response "OK")
-    (add-header response "Content-length : " (str (count body-bytes)))
+    (add-status response ok-response-code)
+    (add-header response content-header (str (count body-bytes)))
     (add-body response body-bytes)
     response))
 

@@ -14,7 +14,7 @@
 (deftest add-status-test
   (testing "it adds status header to response "
     (let [response (new-response-builder)
-          status  "OK"]
+          status  "200"]
       (add-status response status)
       (is (= (byte-to-string (get-response response)) (str "HTTP/1.1 200 OK\n"))))))
 
