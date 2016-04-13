@@ -63,6 +63,7 @@
          "</style>"
        "</head>"
        "<h1>Unbeatable Tic-Tac-Toe</h1>"
+       (winner-header board)
           "<body>"
             "<form action=\"/move\" method=\"POST\">"
               "<table><tr>"
