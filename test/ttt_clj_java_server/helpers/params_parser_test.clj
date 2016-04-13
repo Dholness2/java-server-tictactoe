@@ -8,6 +8,12 @@
          expected 2]
       (is (= expected (get-move params))))))
 
+(deftest parse-move-test
+  (testing "it parses move selection into vector"
+    (let[move "x=0"
+         expected ["x" "0"]]
+      (is (= expected (parse-move move))))))
+
 (deftest get-board-positions-test
   (testing "it parse params for filled board positions"
     (let [params "x=0&o=1&openPosition=2&move=submit"

@@ -7,6 +7,9 @@
 (defn parse-params [params]
   (str/split params #"&"))
 
+(defn parse-move [move]
+  (str/split move #"="))
+
 (defn get-move [params]
   (let[params-list (parse-params params)
        move-selection (filter #(.contains % player-move) params-list)]

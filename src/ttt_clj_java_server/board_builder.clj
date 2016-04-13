@@ -1,6 +1,6 @@
 (ns ttt-clj-java-server.board-builder
   (:require [clojure.string :as str]
-            [ttt-clj-java-server.helpers.params-parser :refer [get-board-positions]]
+            [ttt-clj-java-server.helpers.params-parser :refer [get-board-positions parse-move]]
             [tic-tac-toe.board :refer [moveopen? matrix-convrt move create-empty-board]]
             [tic-tac-toe.game :refer [winner]]))
 
@@ -10,7 +10,7 @@
       (move matrix-position marker board))))
 
 (defn update-position [board position]
-  (let[selection (str/split position #"=")
+  (let[selection (parse-move position)
        marker (first selection)
        move-selection (read-string (last selection))]
     (add-move board move-selection marker)))
