@@ -1,23 +1,0 @@
-[INFO] Scanning for projects...
-[INFO]                                                                         
-[INFO] ------------------------------------------------------------------------
-[INFO] Building Maven Stub Project (No POM) 1
-[INFO] ------------------------------------------------------------------------
-[INFO] 
-[INFO] --- maven-deploy-plugin:2.7:deploy-file (default-cli) @ standalone-pom ---
-Downloading: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/1.5.6/plexus-utils-1.5.6.jar
-4/245 KB   8/245 KB   12/245 KB   16/245 KB   20/245 KB   24/245 KB   28/245 KB   32/245 KB   36/245 KB   40/245 KB   44/245 KB   48/245 KB   52/245 KB   56/245 KB   60/245 KB   64/245 KB   68/245 KB   72/245 KB   76/245 KB   80/245 KB   84/245 KB   88/245 KB   92/245 KB   96/245 KB   100/245 KB   104/245 KB   108/245 KB   112/245 KB   116/245 KB   120/245 KB   124/245 KB   128/245 KB   132/245 KB   136/245 KB   140/245 KB   144/245 KB   148/245 KB   152/245 KB   156/245 KB   160/245 KB   164/245 KB   168/245 KB   172/245 KB   176/245 KB   180/245 KB   184/245 KB   188/245 KB   191/245 KB   192/245 KB   196/245 KB   200/245 KB   204/245 KB   208/245 KB   212/245 KB   216/245 KB   220/245 KB   224/245 KB   228/245 KB   232/245 KB   236/245 KB   240/245 KB   244/245 KB   245/245 KB                Downloaded: https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/1.5.6/plexus-utils-1.5.6.jar (245 KB at 98.9 KB/sec)
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 3.278 s
-[INFO] Finished at: 2016-03-29T21:43:34-07:00
-[INFO] Final Memory: 10M/155M
-[INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-deploy-plugin:2.7:deploy-file (default-cli) on project standalone-pom: /Users/DHolness/Desktop/java-server-tictactoe/ttt-clj-java-server/Server.jar not found. -> [Help 1]
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
