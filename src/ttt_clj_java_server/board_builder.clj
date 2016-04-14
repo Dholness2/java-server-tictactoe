@@ -74,7 +74,7 @@
                  (str/join  (get table-data 1))
                  "</tr><tr>"
                  (str/join (get table-data 2))
-                 "</tr></table>"
+                 "</tr></table><br>"
                  (form-submit board)"<br>"
             "</form>"
             "<p>"

@@ -96,7 +96,7 @@
                               "<td class=\"square7\"><input type=\"radio\" value=\"8\" name=\"openPosition\"></td>"
                               "<td class=\"square8\"><input type=\"radio\" value=\"9\" name=\"openPosition\"></td>"
                             "</tr>"
-                          "</table>"
+                          "</table><br>"
                           "<input type=\"submit\" value=\"Submit Move\" name=\"move\"><br>"
                         "</form>"
                     "<p>"
