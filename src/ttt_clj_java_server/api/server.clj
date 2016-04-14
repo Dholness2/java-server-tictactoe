@@ -15,7 +15,7 @@
 (defn get-server [port server-build]
   (.getServer server-build port))
 
-(defn serveron? [server]
+(defn server-on? [server]
   (.isServerOn server))
 
 (defn server-off [server]

@@ -1,11 +1,13 @@
 (ns ttt-clj-java-server.board-builder
   (:require [clojure.string :as str]
             [ttt-clj-java-server.helpers.params-parser :refer [get-board-positions parse-move]]
-            [tic-tac-toe.board :refer [moveopen? matrix-convrt move create-empty-board]]
+            [tic-tac-toe.board :refer [move-open? matrix-convrt move create-empty-board]]
             [tic-tac-toe.game :refer [winner]]))
 
+(def empty-space "_")
+
 (defn add-move [board move-selection marker]
-  (if (moveopen? board move-selection)
+  (if (move-open? board move-selection)
     (let [matrix-position (matrix-convrt move-selection 3)]
       (move matrix-position marker board))))
 
@@ -26,7 +28,7 @@
 
 (defn create-table-data [index marker]
   (let [position (inc index)]
-    (if (= marker "_")
+    (if (= marker empty-space)
       (str "<td class=\"square" index "\"><input type=\"radio\" value=\"" position "\" name=\"openPosition\"></td>")
       (str "<td class=\"square" index "\"><a class=\"move\">" marker "</a><input type=\"hidden\" value=\"" position "\" name="\" marker "\"></td>"))))
 
